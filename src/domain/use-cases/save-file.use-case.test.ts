@@ -1,12 +1,6 @@
 import { SaveFile } from "./save-file.use-case";
 import fs from "fs";
 
-function removeDir(dir: string) {
-  if (fs.existsSync(dir)) {
-    fs.rmSync(dir, { recursive: true });
-  }
-}
-
 describe("/save-file-use-case.ts", () => {
   const customOptions = {
     fileContent: "custom content",
@@ -14,13 +8,19 @@ describe("/save-file-use-case.ts", () => {
     fileName: "custom-table-name",
   };
   const rootOutDir = "outputs";
-  const customOutDir = customOptions.fileDestination;
+  const customOutDir = customOptions.fileDestination.split("/")[0];
   const saveFile = new SaveFile();
 
-  beforeEach(() => {
-    removeDir(rootOutDir);
-    removeDir(customOutDir);
-  });
+  function removeDir(dir: string) {
+    if (fs.existsSync(dir)) {
+      fs.rmSync(dir, { recursive: true });
+    }
+  }
+
+  // beforeEach(() => {
+  //   removeDir(rootOutDir);
+  //   removeDir(customOutDir);
+  // });
 
   afterEach(() => {
     removeDir(rootOutDir);
