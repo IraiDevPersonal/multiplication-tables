@@ -3,7 +3,6 @@ import { ServerApp } from "./presentation/server-app";
 
 (async () => {
   main();
-  console.log("Fin de programa");
 })();
 
 async function main() {
