@@ -30,6 +30,8 @@ export class ServerApp {
       console.log(table);
     }
 
-    wasCreated ? "File Created" : "File not Created";
+    return wasCreated
+      ? console.log("File Created!")
+      : console.error("File not Created!");
   }
 }
